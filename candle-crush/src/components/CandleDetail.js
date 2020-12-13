@@ -104,9 +104,9 @@ class CandleDetail extends React.Component {
     })
       .then(resp => resp.json())
       .then(newReview => {
-        // let updatedReviews = [...this.state.reviews, newReview]
+        
         this.setState({
-          // reviews: updatedReviews,
+          
           rating: "",
           review: ""
         })

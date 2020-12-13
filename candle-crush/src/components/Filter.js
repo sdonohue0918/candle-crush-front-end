@@ -33,7 +33,7 @@ const Filter = props => {
         getOptionLabel={(option) => option}
         onChange={props.filterScent}
         onInputChange = {props.filterScent}
-        value={props.scentValue}
+        value={props.filterScent}
         renderInput={(params) => (
         
           <TextField

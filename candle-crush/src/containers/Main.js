@@ -27,7 +27,8 @@ class Main extends React.Component {
     scent: "",
     quantity: "",
     currentPage: 1,
-    candlesPerPage: 10
+    candlesPerPage: 10,
+    searchReset: false
   }
 
   componentDidMount() {
@@ -48,23 +49,39 @@ class Main extends React.Component {
   }
 
   filterCandles = () => {
-    // let indexOfLastCandle = this.state.currentPage * this.state.candlesPerPage
-    // let indexOfFirstCandle = indexOfLastCandle - this.state.candlesPerPage
-    let filteredCandles = this.state.candles.filter(candle => {return candle.name.includes(this.state.searchValue)})
 
+    // if (this.state.searchReset) {
+    //   return this.state.candles.filter(candle => { return candle.name.includes(this.state.searchValue)})
+    // } else {
+
+    //   let filteredCandles = this.state.candles.filter(candle => { return candle.name.includes(this.state.searchValue)})
+    //   let filterCandlesScent = (this.state.filterScent === "" ? filteredCandles : filteredCandles.filter(candle => { return candle.scents.includes(this.state.filterScent)}))
+    
+    //   if (this.state.filterValue === "highLow") {
+    //   return filterCandlesScent.sort((a, b) => {
+    //     return b.price - a.price
+    //   })
+      
+    // } else {
+    //   return filterCandlesScent.sort((a, b) => {
+    //     return a.price - b.price
+    //   })
+    //   }
+
+    // }
+   
+    let filteredCandles = this.state.candles.filter(candle => { return candle.name.includes(this.state.searchValue)})
     let filterCandlesScent = (this.state.filterScent === "" ? filteredCandles : filteredCandles.filter(candle => { return candle.scents.includes(this.state.filterScent)}))
-
     if (this.state.filterValue === "highLow") {
       return filterCandlesScent.sort((a, b) => {
         return b.price - a.price
       })
-      // .slice(indexOfFirstCandle, indexOfLastCandle)
+      
     } else {
       return filterCandlesScent.sort((a, b) => {
         return a.price - b.price
       })
-      // .slice(indexOfFirstCandle, indexOfLastCandle)
-    }
+      }
   }
 
   filterPrice = (e) => {
@@ -114,9 +131,7 @@ class Main extends React.Component {
     })
       .then(resp => resp.json()).then(data => this.setState({ cart: [],
        candles: data}, this.checkoutCallback()
-        //this.getCandles()
-        // this.props.updateCartLength(0)
-        // this.props.history.push('/candles')
+        
       ))
   }
 
@@ -133,9 +148,9 @@ checkoutCallback = () => {
     
     this.getCandles()
     
-        
-    
   }
+
+ 
 
   candleChangeHandler = e => {
     this.setState({
@@ -195,6 +210,17 @@ checkoutCallback = () => {
     })
   }
 
+  // searchResetCandles = () => {
+  //   this.setState({searchReset: true,
+  //   }, this.searchReset)
+  // }
+
+  candleReset = () => {
+    this.setState({searchValue: "",
+    filterValue: "highLow",
+    filterScent: "",})
+  }
+
   render(){
   
     return (
@@ -205,7 +231,7 @@ checkoutCallback = () => {
               <CreateCandle name={this.state.name} price={this.state.price} description={this.state.description} image={this.state.image} scent={this.state.scent} changeHandler={this.candleChangeHandler} submitHandler={this.createCandle}/>
             </Route>
             <Route path='/candles' >
-                <FilterContainer candles={this.state.candles} scentValue={this.state.filterScent} searchHandler={this.searchBarHandler} filterScent={this.filterScent} filterPrice={this.filterPrice} filterValue={this.state.filterValue} searchValue={this.state.searchValue}/>
+                <FilterContainer candles={this.state.candles} scentValue={this.state.filterScent} searchHandler={this.searchBarHandler} filterScent={this.filterScent} filterPrice={this.filterPrice} filterValue={this.state.filterValue} searchValue={this.state.searchValue} candleReset={this.candleReset}/>
                 <CandlesContainer currentUser={this.props.currentUser} clickHandler={this.addToCart} candles={this.filterCandles()} paginate={this.paginate} pages={Math.ceil(this.state.candles.length/this.state.candlesPerPage)} />
             </Route>
             

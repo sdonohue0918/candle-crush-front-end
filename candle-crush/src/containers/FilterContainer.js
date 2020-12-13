@@ -38,10 +38,9 @@ const FilterContainer = props => {
     let newCandlesArray = mappedCandles.flat(1)
     return newCandlesArray.filter((v, i, a) => a.indexOf(v) === i).filter(el => el !== null)
     
-
-
-  }
+}
     
+
   
   
   return (
@@ -52,7 +51,7 @@ const FilterContainer = props => {
       </Typography>
       
 
-      <Search id="search" searchHandler={props.searchHandler} searchValue={props.searchValue}/>
+      <Search id="search" candleReset={props.candleReset} searchHandler={props.searchHandler} searchValue={props.searchValue}/>
       <Filter id="filter" scents={filterScentsFromCandles()}  filterScent={props.filterScent} filterValue={props.filterValue} filterPrice={props.filterPrice}/>
       </Paper>
     </div>

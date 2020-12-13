@@ -69,7 +69,7 @@ const NavBar = (props) => {
           </NavLink>
           <NavLink to='/signup'>Sign Up</NavLink>
           <NavLink to='/login'>Login</NavLink>
-          <Button color='primary' onClick={props.logoutHandler}>Logout</Button>
+          {/* <Button color='primary' onClick={props.logoutHandler}>Logout</Button> */}
 
         </div>
       ) 
