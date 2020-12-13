@@ -85,8 +85,8 @@ class Main extends React.Component {
     let updatedCart = [...this.state.cart, candleObj]
     this.setState({
       cart: updatedCart
-    })
-    this.props.updateCartLength(updatedCart.length)
+    }, () => {this.props.updateCartLength(updatedCart.length) })
+    
   }
 
   removeFromCart = candleObj => {
@@ -96,8 +96,8 @@ class Main extends React.Component {
     let updatedCart = [...this.state.cart]
     this.setState({
       cart: updatedCart
-    })
-    this.props.updateCartLength(updatedCart.length)
+    }, () => this.props.updateCartLength(updatedCart.length))
+    
   }
 
   checkoutHandler = () => {
@@ -110,15 +110,25 @@ class Main extends React.Component {
         accepts: "application/json",
         Authorization: `Bearer ${token}`
       },
-      body: JSON.stringify({user: this.props.currentUser.id, candle: this.state.cart})
-    }).then(this.setState({
-        cart: []
-      }, () => {
-        this.getCandles()
+      body: JSON.stringify({user: this.props.currentUser.id, candle: this.state.cart})}).then(resp => resp.json()).then(data => this.setState({candles: data}, () => {
         this.props.updateCartLength(0)
-        this.props.history.push('/candles') 
-      })
-    )
+      }))
+  }
+
+
+
+
+//   this.setState({
+//     cart: []
+//   }, () => {
+//     // this.getCandles()
+//     this.props.updateCartLength(0)
+//     this.props.history.push('/candles') 
+//   })
+// )
+
+  setCandlesAfterReturn = (candle) => {
+    console.log(candle)
   }
 
   candleChangeHandler = e => {
@@ -210,7 +220,7 @@ class Main extends React.Component {
             </Route>
 
             <Route path='/profile'>
-              <Profile purchases={this.props.purchases} currentUser={this.props.currentUser}/>
+              <Profile purchases={this.props.purchases} returnPurchase={this.setCandlesAfterReturn}currentUser={this.props.currentUser}/>
             </Route>
 
           </Switch>

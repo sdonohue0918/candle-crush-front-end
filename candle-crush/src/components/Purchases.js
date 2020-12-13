@@ -9,27 +9,33 @@ class Purchases extends React.Component {
         purchases: []
     }
 
-     renderPurchases = () => {
-      let sortedPurchases = this.state.purchases.sort((a, b) => a.id - b.id)
-      return sortedPurchases.map(purchase => <PurchaseCard returnCandle={this.returnCandle} purchase={purchase} />)
-      }
-
-      componentDidMount() {
+    
+    componentDidMount() {
         const token = localStorage.getItem('token')
-          fetch('http://localhost:3000/api/v1/purchases', {
-              method: "GET",
-              headers: {
-                  Authorization: `Bearer ${token}`
-              }
-          }).then(resp => resp.json())
-          .then(data => {
-              this.setState({
-                  purchases: data
-              })
-          })
-      }
-
-      returnCandle = (id) => {
+        fetch('http://localhost:3000/api/v1/purchases', {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(resp => resp.json())
+        .then(data => {
+            this.setState({
+                purchases: data
+            })
+        })
+    }
+    
+    
+    
+    renderPurchases = () => {
+        let sortedPurchases = this.state.purchases.sort((a, b) => a.id - b.id)
+        return sortedPurchases.map(purchase => <PurchaseCard returnPurchase={this.props.returnPurchase} returnCandle={this.returnCandle} purchase={purchase} />)
+     }
+    
+    
+    
+    
+     returnCandle = (id) => {
 
           const token = localStorage.getItem('token')
           fetch(`http://localhost:3000/api/v1/purchases/${id}`, {
@@ -47,7 +53,10 @@ class Purchases extends React.Component {
             
         }
             
-      render() {
+      
+      
+      
+        render() {
           return (
             <>
               <Typography variant='h4' gutterBottom>Your Purchases</Typography>

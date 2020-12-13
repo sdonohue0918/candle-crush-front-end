@@ -17,7 +17,7 @@ const Profile = (props) =>  {
         <h3>Username: {props.currentUser.username}</h3>
           
           <List>
-            {<Purchases />}
+            {<Purchases returnPurchase={props.returnPurchase}/>}
           </List>
       
       </div>
