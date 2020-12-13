@@ -21,9 +21,9 @@ const NavBar = (props) => {
             <ShoppingCartIcon />
           </Badge>
         </NavLink>
-        <NavLink to='/profile'>
+        {props.currentUser === null ? null : <NavLink to='/profile'>
           <AccountCircleIcon />
-        </NavLink>
+        </NavLink>}
 
         {props.currentUser === null ?
           <NavLink to='/signup'>Sign Up</NavLink>

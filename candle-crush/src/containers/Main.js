@@ -26,8 +26,8 @@ class Main extends React.Component {
     description: "",
     scent: "",
     quantity: "",
-    currentPage: 1,
-    candlesPerPage: 10
+    // currentPage: 1,
+    // candlesPerPage: 10
   }
 
   componentDidMount() {
@@ -37,7 +37,7 @@ class Main extends React.Component {
   getCandles = () => {
     fetch('http://localhost:3000/api/v1/candles')
       .then(resp => resp.json())
-      .then(candles => this.setState({candles}))
+      .then(candles => this.setState({candles: candles}))
       .then(console.log('get to /candles ran succesfully'))
   }
 
@@ -173,11 +173,7 @@ class Main extends React.Component {
     }
     
 
-  paginate = (event, value) => {
-    this.setState({
-        currentPage: value
-    })
-  }
+ 
 
   render(){
   

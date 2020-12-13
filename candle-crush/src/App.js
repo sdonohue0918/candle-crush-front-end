@@ -140,6 +140,7 @@ class App extends React.Component {
               user_type={this.state.user_type} 
               purchases={this.state.purchases}
               updateCartLength={this.updateCartLength}
+              currentCartLength={this.state.cartLength}
             />
         </div>
     
