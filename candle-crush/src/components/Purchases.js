@@ -29,7 +29,7 @@ class Purchases extends React.Component {
     
     renderPurchases = () => {
         let sortedPurchases = this.state.purchases.sort((a, b) => a.id - b.id)
-        return sortedPurchases.map(purchase => <PurchaseCard returnPurchase={this.props.returnPurchase} returnCandle={this.returnCandle} purchase={purchase} />)
+        return sortedPurchases.map(purchase => <PurchaseCard  returnCandle={this.returnCandle} purchase={purchase} />)
      }
     
     
@@ -48,7 +48,7 @@ class Purchases extends React.Component {
                 let updatedPurchases = this.state.purchases.filter(purchase => purchase.id !== data.id)
                 this.setState({
                     purchases: updatedPurchases
-                }, () => this.props.history.push('/candles'))
+                }, () => this.props.returnPurchase())
             })
             
         }

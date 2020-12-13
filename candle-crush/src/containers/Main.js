@@ -127,8 +127,27 @@ class Main extends React.Component {
 //   })
 // )
 
-  setCandlesAfterReturn = (candle) => {
-    console.log(candle)
+  setCandlesAfterReturn = () => {
+    
+    this.getCandles()
+
+    // returnCandle = (id) => 
+
+      // const token = localStorage.getItem('token')
+      // fetch(`http://localhost:3000/api/v1/purchases/${id}`, {
+      //     method: "DELETE",
+      //     headers: {
+      //         Authorization: `Bearer ${token}`
+      //       }
+      //   }).then(resp => resp.json())
+      //   .then(data => {
+      //       let updatedPurchases = this.state.purchases.filter(purchase => purchase.id !== data.id)
+      //       this.setState({
+      //           purchases: updatedPurchases
+      //       }, () => this.props.history.push('/candles'))
+      //   })
+        
+    
   }
 
   candleChangeHandler = e => {
@@ -220,7 +239,7 @@ class Main extends React.Component {
             </Route>
 
             <Route path='/profile'>
-              <Profile purchases={this.props.purchases} returnPurchase={this.setCandlesAfterReturn}currentUser={this.props.currentUser}/>
+              <Profile purchases={this.props.purchases} returnPurchase={this.setCandlesAfterReturn} currentUser={this.props.currentUser}/>
             </Route>
 
           </Switch>
