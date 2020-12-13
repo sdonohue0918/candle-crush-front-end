@@ -8,6 +8,7 @@ import {withRouter, Route} from 'react-router-dom'
 class App extends React.Component {
   state = {
     currentUser: null,
+    signIn: false,
     username: "",
     password: "",
     user_type: "basic",
@@ -36,10 +37,11 @@ class App extends React.Component {
   }
 
   logoutHandler = () => {
-    console.log('loggin out...')
+    //console.log('loggin out...')
     localStorage.removeItem('token')
     this.setState({
-      currentUser: null
+      currentUser: null,
+      signIn: false
     })
   }
 
@@ -72,7 +74,8 @@ class App extends React.Component {
         username: "",
         password: "",
         user_type: "basic",
-        currentUser: data.user
+        currentUser: data.user,
+        signIn: true
       }, () => {
         this.props.history.push('/candles')
       })
@@ -102,12 +105,14 @@ class App extends React.Component {
     fetch('http://localhost:3000/api/v1/users', config)
     .then(resp => resp.json())
     .then(data => {
+      console.log(data)
       localStorage.setItem("token", data.jwt)
       this.setState({
         username: "",
         password: "",
-        user_type: "basic",
-        currentUser: data.user
+        user_type: data.user.user_type,
+        currentUser: data.user,
+        signIn: true
         
       }, () => {
         this.props.history.push('/candles')
@@ -122,15 +127,16 @@ class App extends React.Component {
   }
   
   render() {
+    console.log(this.state)
     return (
       
       <div className="App">
-            <NavBar currentUser={this.state.currentUser} logoutHandler={this.logoutHandler} cartLength={this.state.cartLength}/>
+            <NavBar isSignedIn={this.state.signIn} currentUser={this.state.currentUser} logoutHandler={this.logoutHandler} cartLength={this.state.cartLength}/>
             <Route exact path='/'>
               <Welcome />
             </Route>
             <Main 
-              style={{background: "red !important"}}
+              
               currentUser={this.state.currentUser} 
               loginSubmit={this.loginSubmit} 
               signupSubmit={this.signupSubmit} 
@@ -138,7 +144,6 @@ class App extends React.Component {
               username={this.state.username} 
               password={this.state.password} 
               user_type={this.state.user_type} 
-              
               updateCartLength={this.updateCartLength}
             />
         </div>
