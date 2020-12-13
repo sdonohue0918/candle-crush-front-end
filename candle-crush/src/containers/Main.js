@@ -110,8 +110,10 @@ class Main extends React.Component {
         accepts: "application/json",
         Authorization: `Bearer ${token}`
       },
-      body: JSON.stringify({user: this.props.currentUser.id, candle: this.state.cart})}).then(resp => resp.json()).then(data => this.setState({candles: data}, () => {
+      body: JSON.stringify({user: this.props.currentUser.id, candle: this.state.cart})}).then(resp => resp.json()).then(data => this.setState({candles: []}, () => {
+        this.getCandles()
         this.props.updateCartLength(0)
+        this.props.history.push('/candles')
       }))
   }
 
@@ -130,6 +132,8 @@ class Main extends React.Component {
   setCandlesAfterReturn = () => {
     
     this.getCandles()
+    // this.props.history.push('/profile')
+    
 
     // returnCandle = (id) => 
 
@@ -239,7 +243,7 @@ class Main extends React.Component {
             </Route>
 
             <Route path='/profile'>
-              <Profile purchases={this.props.purchases} returnPurchase={this.setCandlesAfterReturn} currentUser={this.props.currentUser}/>
+              <Profile returnPurchase={this.setCandlesAfterReturn} currentUser={this.props.currentUser}/>
             </Route>
 
           </Switch>

@@ -25,7 +25,12 @@ class Purchases extends React.Component {
         })
     }
     
-    
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.purchases !== this.state.purchases) {
+            this.renderPurchases()
+        }
+
+    }
     
     renderPurchases = () => {
         let sortedPurchases = this.state.purchases.sort((a, b) => a.id - b.id)
@@ -48,7 +53,7 @@ class Purchases extends React.Component {
                 let updatedPurchases = this.state.purchases.filter(purchase => purchase.id !== data.id)
                 this.setState({
                     purchases: updatedPurchases
-                }, () => this.props.returnPurchase())
+                }, this.props.returnPurchase())
             })
             
         }
@@ -57,6 +62,7 @@ class Purchases extends React.Component {
       
       
         render() {
+            console.log(this.state.purchases)
           return (
             <>
               <Typography variant='h4' gutterBottom>Your Purchases</Typography>

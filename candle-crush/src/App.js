@@ -138,7 +138,7 @@ class App extends React.Component {
               username={this.state.username} 
               password={this.state.password} 
               user_type={this.state.user_type} 
-              purchases={this.state.purchases}
+              
               updateCartLength={this.updateCartLength}
             />
         </div>
