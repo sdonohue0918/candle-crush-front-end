@@ -16,9 +16,9 @@ class Main extends React.Component {
 
   state = {
     candles: [],
-    searchValue: "",
-    filterValue: "highLow",
-    filterScent: "",
+    // searchValue: "",
+    // filterValue: "highLow",
+    // filterScent: "",
     cart: [],
     name: "",
     price: "",
@@ -47,46 +47,46 @@ class Main extends React.Component {
     })
   }
 
-  filterCandles = () => {
-    // let indexOfLastCandle = this.state.currentPage * this.state.candlesPerPage
-    // let indexOfFirstCandle = indexOfLastCandle - this.state.candlesPerPage
-    let filteredCandles = this.state.candles.filter(candle => {return candle.name.includes(this.state.searchValue)})
+  // filterCandles = () => {
+  //   // let indexOfLastCandle = this.state.currentPage * this.state.candlesPerPage
+  //   // let indexOfFirstCandle = indexOfLastCandle - this.state.candlesPerPage
+  //   let filteredCandles = this.state.candles.filter(candle => {return candle.name.includes(this.state.searchValue)})
 
-    let filterCandlesScent = (this.state.filterScent === "" ? filteredCandles : filteredCandles.filter(candle => { return candle.scents.includes(this.state.filterScent)}))
+  //   let filterCandlesScent = (this.state.filterScent === "" ? filteredCandles : filteredCandles.filter(candle => { return candle.scents.includes(this.state.filterScent)}))
 
-    if (this.state.filterValue === "highLow") {
-      return filterCandlesScent.sort((a, b) => {
-        return b.price - a.price
-      })
-      // .slice(indexOfFirstCandle, indexOfLastCandle)
-    } else {
-      return filterCandlesScent.sort((a, b) => {
-        return a.price - b.price
-      })
-      // .slice(indexOfFirstCandle, indexOfLastCandle)
-    }
-  }
+  //   if (this.state.filterValue === "highLow") {
+  //     return filterCandlesScent.sort((a, b) => {
+  //       return b.price - a.price
+  //     })
+  //     // .slice(indexOfFirstCandle, indexOfLastCandle)
+  //   } else {
+  //     return filterCandlesScent.sort((a, b) => {
+  //       return a.price - b.price
+  //     })
+  //     // .slice(indexOfFirstCandle, indexOfLastCandle)
+  //   }
+  // }
 
-  filterPrice = (e) => {
-    this.setState({
-      filterValue: e.target.value
-    })
-  }
+  // filterPrice = (e) => {
+  //   this.setState({
+  //     filterValue: e.target.value
+  //   })
+  // }
 
 
 
-  filterScent = (e, value) => {
-    this.setState({
-      filterScent: value
-    })
-  }
+  // filterScent = (e, value) => {
+  //   this.setState({
+  //     filterScent: value
+  //   })
+  // }
 
   addToCart = candleObj => {
     let updatedCart = [...this.state.cart, candleObj]
     this.setState({
       cart: updatedCart
-    })
-    this.props.updateCartLength(updatedCart.length)
+    }, () => { this.props.updateCartLength(updatedCart.length)})
+    
   }
 
   removeFromCart = candleObj => {
@@ -96,8 +96,8 @@ class Main extends React.Component {
     let updatedCart = [...this.state.cart]
     this.setState({
       cart: updatedCart
-    })
-    this.props.updateCartLength(updatedCart.length)
+    }, () => {this.props.updateCartLength(updatedCart.length)})
+    
   }
 
   checkoutHandler = () => {
@@ -128,7 +128,7 @@ class Main extends React.Component {
   }
 
   createCandle = e => {
-    // e.preventDefault()
+    e.preventDefault()
 
     let candleObj = {
       candle: {
@@ -172,21 +172,30 @@ class Main extends React.Component {
       
     }
     
+   filterScentsFromCandles = () => {
+      let mappedCandles = this.state.candles.map(candle => candle.scents)
+      let newCandlesArray = mappedCandles.flat(1)
+      return newCandlesArray.filter((v, i, a) => a.indexOf(v) === i).filter(el => el !== null)
+      
+  
+  
+    }
 
  
 
   render(){
   
     return (
-      <div id="main-container">
+      <div >
           <Switch>
             
             <Route path='/candles/create'>
               <CreateCandle name={this.state.name} price={this.state.price} description={this.state.description} image={this.state.image} scent={this.state.scent} changeHandler={this.candleChangeHandler} submitHandler={this.createCandle}/>
             </Route>
+            
             <Route path='/candles' >
-                <FilterContainer candles={this.state.candles} scentValue={this.state.filterScent} searchHandler={this.searchBarHandler} filterScent={this.filterScent} filterPrice={this.filterPrice} filterValue={this.state.filterValue} searchValue={this.state.searchValue}/>
-                <CandlesContainer currentUser={this.props.currentUser} clickHandler={this.addToCart} candles={this.filterCandles()} paginate={this.paginate} pages={Math.ceil(this.state.candles.length/this.state.candlesPerPage)} />
+                {/* <FilterContainer candles={this.state.candles} scentValue={this.state.filterScent} searchHandler={this.searchBarHandler} filterScent={this.filterScent} filterPrice={this.filterPrice} filterValue={this.state.filterValue} searchValue={this.state.searchValue}/> */}
+                <CandlesContainer currentUser={this.props.currentUser} clickHandler={this.addToCart} candles={this.state.candles} scents={this.filterScentsFromCandles} />
             </Route>
             
             <Route path='/cart'>

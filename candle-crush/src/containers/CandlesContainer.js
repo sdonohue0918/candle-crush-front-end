@@ -1,4 +1,5 @@
 import React from 'react'
+import Filters from '../containers/Filters'
 import Candle from '../components/Candle'
 import {Route, Switch, withRouter} from 'react-router-dom'
 import CandleDetail from '../components/CandleDetail'
@@ -6,9 +7,8 @@ import CandleDetail from '../components/CandleDetail'
 
 const CandlesContainer = props => {
   
-  const renderCandles = () => {
-    return props.candles.map(candle => <Candle key={candle.id} candle={candle} clickHandler={props.clickHandler} />)
-  }
+
+
 
   return (
     <div>
@@ -30,15 +30,17 @@ const CandlesContainer = props => {
     
     <Route path="/candles" render={() => {
       return (
-        <div id='candles-container'>
-          {renderCandles()}
+        <div >
+          {/* {renderCandles()} */}
+          <Filters candles={props.candles}/>
         </div> 
       )
     }}
     />
 
   </Switch>
-</div> )
+</div> 
+)
 
 }
 
