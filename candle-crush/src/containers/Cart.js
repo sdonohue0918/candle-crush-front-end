@@ -45,10 +45,17 @@ const Cart = ({cart, currentUser, addToCart, removeFromCart}) => {
     },
   }));
 
+  
+  
   const classes = useStyles()
 
+  
+  
   let cartCopy = cart.map((item) => ({...item, qty: 0}))
     
+  
+  
+  
   const updatedCart = cartCopy.map(item => {
     if(cartCopy.includes(item)) {
       let foundItem = cartCopy.find(el => el.id === item.id)
@@ -69,10 +76,7 @@ const Cart = ({cart, currentUser, addToCart, removeFromCart}) => {
     return filteredCart.map((item, index) => <CartItem key={index} item={item} removeFromCart={removeFromCart} addToCart={addToCart} />)
   }
   
-  // const cartTotals = () => {
-  //   if (cart.length === 0 ) return [0]
-  //   return cart.map((item) => item.price)
-  // }
+
   
   const checkoutButton = () => {
     

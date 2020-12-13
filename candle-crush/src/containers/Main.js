@@ -110,46 +110,29 @@ class Main extends React.Component {
         accepts: "application/json",
         Authorization: `Bearer ${token}`
       },
-      body: JSON.stringify({user: this.props.currentUser.id, candle: this.state.cart})}).then(resp => resp.json()).then(data => this.setState({candles: []}, () => {
-        this.getCandles()
-        this.props.updateCartLength(0)
-        this.props.history.push('/candles')
-      }))
+      body: JSON.stringify({user: this.props.currentUser.id, candle: this.state.cart})
+    })
+      .then(resp => resp.json()).then(data => this.setState({ cart: [],
+       candles: data}, this.checkoutCallback()
+        //this.getCandles()
+        // this.props.updateCartLength(0)
+        // this.props.history.push('/candles')
+      ))
   }
 
+checkoutCallback = () => {
+  this.props.updateCartLength(0)
+  this.props.history.push('/candles')
+}
 
 
 
-//   this.setState({
-//     cart: []
-//   }, () => {
-//     // this.getCandles()
-//     this.props.updateCartLength(0)
-//     this.props.history.push('/candles') 
-//   })
-// )
+
 
   setCandlesAfterReturn = () => {
     
     this.getCandles()
-    // this.props.history.push('/profile')
     
-
-    // returnCandle = (id) => 
-
-      // const token = localStorage.getItem('token')
-      // fetch(`http://localhost:3000/api/v1/purchases/${id}`, {
-      //     method: "DELETE",
-      //     headers: {
-      //         Authorization: `Bearer ${token}`
-      //       }
-      //   }).then(resp => resp.json())
-      //   .then(data => {
-      //       let updatedPurchases = this.state.purchases.filter(purchase => purchase.id !== data.id)
-      //       this.setState({
-      //           purchases: updatedPurchases
-      //       }, () => this.props.history.push('/candles'))
-      //   })
         
     
   }

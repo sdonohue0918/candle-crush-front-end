@@ -62,7 +62,7 @@ class Purchases extends React.Component {
       
       
         render() {
-            console.log(this.state.purchases)
+        console.log(this.state.purchases)
           return (
             <>
               <Typography variant='h4' gutterBottom>Your Purchases</Typography>
