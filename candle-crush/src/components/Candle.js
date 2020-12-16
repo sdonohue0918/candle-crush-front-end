@@ -74,7 +74,7 @@ const Candle = ({candle, clickHandler, unmountFilterContainer}) => {
   
   
   )
-  // return (<h1>{candle.name}</h1>)
+  
 }
 
 export default Candle

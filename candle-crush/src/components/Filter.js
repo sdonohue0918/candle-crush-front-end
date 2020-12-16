@@ -22,11 +22,10 @@ const Filter = props => {
 
       <Autocomplete
         
-        // name="filterScent"
-        // onChange={props.filterScent}
+        
         
         freeSolo
-        // onClick={props.filterScent}
+        
         name="filterScent"
         id="tags-standard"
         options={props.scents}
@@ -39,7 +38,7 @@ const Filter = props => {
           <TextField
 
             {...params}
-            // onClick={props.filterScent}
+            
             variant="standard"
             label="Scent"
             placeholder="Scent Profile"

@@ -171,12 +171,6 @@ export default function Checkout({currentUser, cart, checkoutHandler}) {
   );
 }
 
-  //     <form onSubmit={null}>
-  //       <input type="text" label="streetAddress" name="address" placeholder="Enter Street Address"></input>
-  //       <input type="text" label="town" name="town" placeholder="Enter Town/City"></input>
-  //       <input type="text" label="state" name="state" placeholder="Enter State"></input>
-  //       <input type="text" label="zipcode" name="zip" placeholder="Enter Zipcode"></input>
-  //       <button onClick={props.checkoutHandler}>Checkout</button>
-  //     </form>
+  
 
 

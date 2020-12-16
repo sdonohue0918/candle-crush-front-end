@@ -49,7 +49,7 @@ class CandleDetail extends React.Component {
   }
 
   componentDidMount() {
-      fetch(`http://localhost:3000/api/v1/candles/${this.props.candle.id}`)
+      fetch(`https://whispering-taiga-58641.herokuapp.com/api/v1/candles/${this.props.candle.id}`)
       .then(resp => resp.json())
       .then(data => this.setState({
         reviews: data.reviews
@@ -58,7 +58,7 @@ class CandleDetail extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if(prevState.rating !== this.state.rating) {
-      fetch(`http://localhost:3000/api/v1/candles/${this.props.candle.id}`)
+      fetch(`https://whispering-taiga-58641.herokuapp.com/api/v1/candles/${this.props.candle.id}`)
       .then(resp => resp.json())
       .then(data => this.setState({
         reviews: data.reviews
@@ -94,7 +94,7 @@ class CandleDetail extends React.Component {
       }
     }
 
-    fetch('http://localhost:3000/api/v1/reviews', {
+    fetch('https://whispering-taiga-58641.herokuapp.com/api/v1/reviews', {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -22,7 +22,7 @@ class App extends React.Component {
   authorizeUser = () => {
   const token = localStorage.getItem('token')
   if(token) {
-    fetch('http://localhost:3000/api/v1/users', {
+    fetch('https://whispering-taiga-58641.herokuapp.com/api/v1/users', {
       method: "GET",
       headers: { Authorization: `Bearer ${token}`}
     })
@@ -66,7 +66,7 @@ class App extends React.Component {
       },
       body: JSON.stringify(userObj)
     }
-    fetch('http://localhost:3000/api/v1/login', config)
+    fetch('https://whispering-taiga-58641.herokuapp.com/api/v1/login', config)
     .then(resp => resp.json())
     .then(data => {
       localStorage.setItem("token", data.jwt)
@@ -102,7 +102,7 @@ class App extends React.Component {
       body: JSON.stringify(userObj)
     }
 
-    fetch('http://localhost:3000/api/v1/users', config)
+    fetch('https://whispering-taiga-58641.herokuapp.com/api/v1/users', config)
     .then(resp => resp.json())
     .then(data => {
       console.log(data)

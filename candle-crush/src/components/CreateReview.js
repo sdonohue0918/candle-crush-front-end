@@ -55,9 +55,7 @@ const CreateReview = props => {
 
 
     <form onSubmit={props.submitHandler}>
-      {/* <input type="number" name="rating" value={props.ratingValue} onChange={props.changeHandler}></input>
-      <input type="text" name="review" value={props.reviewValue} onChange={props.changeHandler}></input>
-    <button>Create Review</button> */}
+      
 
         <Grid container>
       <Grid item xs={12}>

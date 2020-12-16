@@ -96,69 +96,7 @@ const CartItem = ({item, addToCart, removeFromCart}) => {
 
     
 
-    // <ListItem >
-    //   <Grid item xs={3}>
-
-    //     <ListItemAvatar>
-    //       <Avatar alt="Candle Image" src={item.image} />
-    //     </ListItemAvatar>
-        
-    //     <ListItemText
-          
-    //       primary = {item.name}
-    //       disableTypography
-    //       >
-    //     </ListItemText>
-    //   </Grid>
-      
-      
-
-    //     <Divider variant="inset" component="li"/>
-        
-    //     <Grid item xs={3} >
-
-    //       <IconButton size='small' edge='end'>
-    //         <RemoveCircleIcon  onClick={removeClickHandler}></RemoveCircleIcon>
-    //       </IconButton>
-    //     <ListItemText
-    //       primary = {item.qty}
-    //       ></ListItemText>
-    //      <IconButton size='small' edge='end'>
-    //         <AddCircleIcon  onClick={addClickHandler}></AddCircleIcon>
-    //       </IconButton>
-    //       </Grid>
-          
-    //     <Divider variant="inset" component="li"/>
-        
-        
-        
-    //     <Grid item xs={3}>
-
-    //     <ListItemText
-          
-    //       primary = {`$ ${item.price}`}
-          
-    //       ></ListItemText>
-    //       </Grid>
-    //     <Divider variant="inset" component="li"/>
-    //     <Grid item xs={3}>
-
-    //     <ListItemText
-          
-    //       disableTypography
-          
-          
-    //       primary= {`$ ${item.price * item.qty}`} 
-    //       disableTypography
-          
-          
-          
-    //       ></ListItemText>
-    //       </Grid>
-    //     <Divider variant="inset" component="li"/>
-    //     </ListItem>
-  
-        
+    
           
 
 

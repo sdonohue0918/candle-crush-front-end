@@ -36,7 +36,7 @@ class Main extends React.Component {
   }
 
   getCandles = () => {
-    fetch('http://localhost:3000/api/v1/candles')
+    fetch('https://whispering-taiga-58641.herokuapp.com/api/v1/candles')
       .then(resp => resp.json())
       .then(candles => this.setState({candles}))
       .then(console.log('get to /candles ran succesfully'))
@@ -50,25 +50,7 @@ class Main extends React.Component {
 
   filterCandles = () => {
 
-    // if (this.state.searchReset) {
-    //   return this.state.candles.filter(candle => { return candle.name.includes(this.state.searchValue)})
-    // } else {
-
-    //   let filteredCandles = this.state.candles.filter(candle => { return candle.name.includes(this.state.searchValue)})
-    //   let filterCandlesScent = (this.state.filterScent === "" ? filteredCandles : filteredCandles.filter(candle => { return candle.scents.includes(this.state.filterScent)}))
     
-    //   if (this.state.filterValue === "highLow") {
-    //   return filterCandlesScent.sort((a, b) => {
-    //     return b.price - a.price
-    //   })
-      
-    // } else {
-    //   return filterCandlesScent.sort((a, b) => {
-    //     return a.price - b.price
-    //   })
-    //   }
-
-    // }
    
     let filteredCandles = this.state.candles.filter(candle => { return candle.name.includes(this.state.searchValue)})
     let filterCandlesScent = (this.state.filterScent === "" ? filteredCandles : filteredCandles.filter(candle => { return candle.scents.includes(this.state.filterScent)}))
@@ -120,7 +102,7 @@ class Main extends React.Component {
   checkoutHandler = () => {
     const token = localStorage.getItem('token')
     
-    fetch('http://localhost:3000/api/v1/purchases', {
+    fetch('https://whispering-taiga-58641.herokuapp.com/api/v1/purchases', {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -173,7 +155,7 @@ checkoutCallback = () => {
       }
     }
     const token = localStorage.getItem('token')
-    fetch('http://localhost:3000/api/v1/candles', {
+    fetch('https://whispering-taiga-58641.herokuapp.com/api/v1/candles', {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -210,10 +192,7 @@ checkoutCallback = () => {
     })
   }
 
-  // searchResetCandles = () => {
-  //   this.setState({searchReset: true,
-  //   }, this.searchReset)
-  // }
+  
 
   candleReset = () => {
     this.setState({searchValue: "",

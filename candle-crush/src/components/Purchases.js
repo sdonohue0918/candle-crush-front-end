@@ -12,7 +12,7 @@ class Purchases extends React.Component {
     
     componentDidMount() {
         const token = localStorage.getItem('token')
-        fetch('http://localhost:3000/api/v1/purchases', {
+        fetch('https://whispering-taiga-58641.herokuapp.com/api/v1/purchases', {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`
@@ -43,7 +43,7 @@ class Purchases extends React.Component {
      returnCandle = (id) => {
 
           const token = localStorage.getItem('token')
-          fetch(`http://localhost:3000/api/v1/purchases/${id}`, {
+          fetch(`https://whispering-taiga-58641.herokuapp.com/api/v1/purchases/${id}`, {
               method: "DELETE",
               headers: {
                   Authorization: `Bearer ${token}`
